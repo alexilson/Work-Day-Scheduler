@@ -19,7 +19,7 @@ $(function () {
       let optionEl = $('<option>').val(i).text(optionTime.format('hh:mm A'));
       selectpickerEl.append(optionEl);
     }
-    selectpickerEl.val('9'); // Set the default value to "8" (from Xpert)
+    selectpickerEl.val('9'); // Set the default value to "9" (from Xpert)
   }
   createStartTimePicker();
 
