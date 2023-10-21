@@ -10,37 +10,33 @@ $(function () {
   // useful when saving the description in local storage?
   const currentDayEl = $('#current-day');
   const saveButtonEl = $('.saveBtn');
-  const startTimeEl = $('#start-time');
+  const selectpickerEl = $('.selectpicker');
 
   // creates a dropdown with every hour of the day in it
   const createStartTimePicker = function (){
     for (i = 0; i < 24; ++i) {
       let optionTime = dayjs().hour(i).minute(0);
       let optionEl = $('<option>').val(i).text(optionTime.format('hh:mm A'));
-      $('.selectpicker').append(optionEl);
+      selectpickerEl.append(optionEl);
     }
-    $('.selectpicker').val('9'); // Set the default value to "8" (from Xpert)
-    // $('.selectpicker').selectpicker();
+    selectpickerEl.val('9'); // Set the default value to "8" (from Xpert)
   }
   createStartTimePicker();
 
   // display name of the current day at top of page
   currentDayEl.text(dayjs().format('dddd'));
 
-  // let startTime = dayjs().hour($('.selectpicker').val()).minute(0);
-
   const next9Hours = function() {
-    let startTime = dayjs().hour($('.selectpicker').val()).minute(0);
+    let startTime = dayjs().hour(selectpickerEl.val()).minute(0);
     for (i = 0; i < 9; ++i) {
       let blockTime = startTime.add(i, 'h');
-      console.log(blockTime.format('hA'));                                                                                   
+      console.log(blockTime.format('hh:mm A'));
     }
   }
 
   next9Hours();
 
-  $('.selectpicker').change(function() {
-    let userInput = $(this).val();
+  selectpickerEl.change(function() {
     next9Hours();
   })
 
