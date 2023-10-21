@@ -14,9 +14,19 @@ $(function () {
   // display name of the current day at top of page
   currentDayEl.text(dayjs().format('dddd'));
 
+
+  // const startTime = dayjs().hour(9).minute(0);
+  const startTime = dayjs().set('hour', 9).set('minute', 0);
+  for (i = 0; i < 9; ++i) {
+    let blockTime = startTime.add(i, 'h');
+    console.log(blockTime.format('hA'));
+  }
+
+
+
+
   // Event listener for save button click
   saveButtonEl.on('click', function() {
-    
   });
 
   //
