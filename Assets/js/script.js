@@ -27,9 +27,10 @@ $(function () {
   // display name of the current day at top of page
   currentDayEl.text(dayjs().format('dddd'));
 
-  let startTime = dayjs().hour($('.selectpicker').val()).minute(0);
+  // let startTime = dayjs().hour($('.selectpicker').val()).minute(0);
 
   const next9Hours = function() {
+    let startTime = dayjs().hour($('.selectpicker').val()).minute(0);
     for (i = 0; i < 9; ++i) {
       let blockTime = startTime.add(i, 'h');
       console.log(blockTime.format('hA'));                                                                                   
@@ -40,7 +41,7 @@ $(function () {
 
   $('.selectpicker').change(function() {
     let userInput = $(this).val();
-    console.log(userInput);
+    next9Hours();
   })
 
   //create first div element with id "hour-" + i and class "row time-block" + timeCategory
