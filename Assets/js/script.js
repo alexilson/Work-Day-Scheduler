@@ -8,22 +8,48 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  let currentDayEl = $('#currentDay');
-  let saveButtonEl = $('.saveBtn');
-  
+  const currentDayEl = $('#current-day');
+  const saveButtonEl = $('.saveBtn');
+  const startTimeEl = $('#start-time');
+
+  // creates a dropdown with every hour of the day in it
+  const createStartTimePicker = function (){
+    for (i = 0; i < 24; ++i) {
+      let optionTime = dayjs().hour(i).minute(0);
+      let optionEl = $('<option>').val(i).text(optionTime.format('hh:mm A'));
+      $('.selectpicker').append(optionEl);
+    }
+    $('.selectpicker').val('9'); // Set the default value to "8" (from Xpert)
+    // $('.selectpicker').selectpicker();
+  }
+  createStartTimePicker();
+
   // display name of the current day at top of page
   currentDayEl.text(dayjs().format('dddd'));
 
+  let startTime = $('.selectpicker').val;
 
-  // const startTime = dayjs().hour(9).minute(0);
-  const startTime = dayjs().set('hour', 9).set('minute', 0);
   for (i = 0; i < 9; ++i) {
     let blockTime = startTime.add(i, 'h');
-    console.log(blockTime.format('hA'));
+    console.log(blockTime.format('hA'));                                                                                   
   }
 
+  //create first div element with id "hour-" + i and class "row time-block" + timeCategory
+  // where if i is in the past, it uses past, if its the present hour it's present, and
+  // if its in the future it uses future.
+  // Then append it to the container
 
+  
+  //create another div element with all the default stuff <div class="col-2 col-md-1 hour text-center py-3">x</div>
+  // but the text content is the blockTime
+  // append it to the previous element
 
+  //create textarea element and use the same values each time, append to previous element
+  //create button element and use the same values each time, append to previous element
+  //create i element and use the same values each time, append to previous element
+
+  // so there's 3 variables, one is the hour in the id, the next one is the past/present/future
+  // the last one is the text content
 
   // Event listener for save button click
   saveButtonEl.on('click', function() {
