@@ -27,12 +27,21 @@ $(function () {
   // display name of the current day at top of page
   currentDayEl.text(dayjs().format('dddd'));
 
-  let startTime = $('.selectpicker').val;
+  let startTime = dayjs().hour($('.selectpicker').val()).minute(0);
 
-  for (i = 0; i < 9; ++i) {
-    let blockTime = startTime.add(i, 'h');
-    console.log(blockTime.format('hA'));                                                                                   
+  const next9Hours = function() {
+    for (i = 0; i < 9; ++i) {
+      let blockTime = startTime.add(i, 'h');
+      console.log(blockTime.format('hA'));                                                                                   
+    }
   }
+
+  next9Hours();
+
+  $('.selectpicker').change(function() {
+    let userInput = $(this).val();
+    console.log(userInput);
+  })
 
   //create first div element with id "hour-" + i and class "row time-block" + timeCategory
   // where if i is in the past, it uses past, if its the present hour it's present, and
