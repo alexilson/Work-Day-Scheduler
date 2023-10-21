@@ -11,6 +11,7 @@ $(function () {
   const currentDayEl = $('#current-day');
   const saveButtonEl = $('.saveBtn');
   const selectpickerEl = $('.selectpicker');
+  const containerEl = $('.container-fluid');
 
   // creates a dropdown with every hour of the day in it
   const createStartTimePicker = function (){
@@ -29,8 +30,22 @@ $(function () {
   const next9Hours = function() {
     let startTime = dayjs().hour(selectpickerEl.val()).minute(0);
     for (i = 0; i < 9; ++i) {
+      
       let blockTime = startTime.add(i, 'h');
       console.log(blockTime.format('hh:mm A'));
+      
+      let timeBlockEl = $('<div>');
+      timeBlockEl.text("Hello World")
+      containerEl.append(timeBlockEl)
+      // timeBlockEl.attr('id', 'hour-' + blockTime.format('H'))
+      // timeBlockEl.attr('id', 'hour-')
+      // timeBlockEl.addClass('row time-block future')
+
+      // let hourTextEl = $('<div>');
+      // hourTextEl.addClass('col-2 col-md-1 hour text-center py-3');
+      // hourTextEl.text(blockTime.format('hh:mm A'))
+      // timeBlockEl.append(hourTextEl);
+
     }
   }
 
@@ -39,6 +54,11 @@ $(function () {
   selectpickerEl.change(function() {
     next9Hours();
   })
+
+  // const createTimeBlock = function() {
+  //   let timeBlockEl = $('<div>');
+  //   timeBlockEl.attr('id', 'hour-' + )
+  // }
 
   //create first div element with id "hour-" + i and class "row time-block" + timeCategory
   // where if i is in the past, it uses past, if its the present hour it's present, and
