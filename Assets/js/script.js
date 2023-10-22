@@ -23,27 +23,32 @@ $(function () {
     selectpickerEl.val('9'); // Set the default value to "9" (from Xpert)
   }
 
-  const next9Hours = function() {
+  const createTimeBlocks = function() {
     containerEl.empty(); // Clear out any pre-existing timeblocks
     let startTime = dayjs().hour(selectpickerEl.val()).minute(0);
     for (i = 0; i < 9; ++i) {
       
       let blockTime = startTime.add(i, 'h');
+      let blockTimeText = blockTime.format('hh:mm A');
       console.log(blockTime.format('hh:mm A'));
       
       let timeBlockEl = $('<div>');
-      timeBlock = 
-      timeBlockEl.text("Hello World")
-      containerEl.append(timeBlockEl)
-      // timeBlockEl.attr('id', 'hour-' + blockTime.format('H'))
-      // timeBlockEl.attr('id', 'hour-')
-      // timeBlockEl.addClass('row time-block future')
+      timeBlockEl.addClass('row time-block future')
+      timeBlockEl.attr('id', 'hour-' + (parseInt(selectpickerEl.val())+ i)) // assigns number to each timeblock up to 31 for 7am to ensure the logic can identify it as a future timeblock without using a date
+      // let blockTimeNum = blockTime.format('H');
+      // timeBlockEl.attr('id', 'hour-' + blockTimeNum) // easier way to assign hour number values but impossible to determine if times past midnight are in the future or past due to lack of a date
+      // timeBlockEl.text(blockTimeText);
+      containerEl.append(timeBlockEl);
 
-      // let hourTextEl = $('<div>');
-      // hourTextEl.addClass('col-2 col-md-1 hour text-center py-3');
-      // hourTextEl.text(blockTime.format('hh:mm A'))
-      // timeBlockEl.append(hourTextEl);
+      let hourTextEl = $('<div>');
+      hourTextEl.addClass('col-2 col-md-1 hour text-center py-3');
+      hourTextEl.text(blockTimeText);
+      timeBlockEl.append(hourTextEl);
 
+      let descriptionEl = $('<textarea>');
+      descriptionEl.addClass('col-8 col-md-10 description'); 
+      descriptionEl.attr('rows', '3');
+      timeBlockEl.append(descriptionEl);
     }
   }
 
@@ -52,11 +57,15 @@ $(function () {
 
   // event handler for when the user changes their selection in the dropdown
   selectpickerEl.change(function() {
-    next9Hours();
+    createTimeBlocks();
   })
 
+  // when user clicks save button on a time block
+  saveButtonEl.on('click', function() {
+  });
+
   createStartTimePicker();
-  next9Hours();
+  createTimeBlocks();
 
   //create first div element with id "hour-" + i and class "row time-block" + timeCategory
   // where if i is in the past, it uses past, if its the present hour it's present, and
@@ -76,8 +85,6 @@ $(function () {
   // the last one is the text content
 
   // Event listener for save button click
-  saveButtonEl.on('click', function() {
-  });
 
   //
   // TODO: Add code to apply the past, present, or future class to each time
