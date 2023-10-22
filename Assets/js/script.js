@@ -30,12 +30,27 @@ $(function () {
        
       let blockTime = startTime.add(i, 'h');
       let blockTimeText = blockTime.format('hh:mm A');
+      let blockTimeNum = parseInt(selectpickerEl.val())+ i;
       console.log(blockTime.format('hh:mm A'));
       
       let timeBlockEl = $('<div>');
-      timeBlockEl.addClass('row time-block future')
+      timeBlockEl.addClass('row time-block');
+
+      now = dayjs().format('H');
+      console.log(now);
+      console.log(blockTimeNum);
+      if (now < blockTimeNum) {
+        timeBlockEl.addClass('future');
+      }
+      else if (now > blockTimeNum) {
+        timeBlockEl.addClass('past');
+      }
+      else {
+        timeBlockEl.addClass('present');
+      }
+      
+
       timeBlockEl.attr('id', 'hour-' + (parseInt(selectpickerEl.val())+ i)) // assigns number to each timeblock up to 31 for 7am to ensure the logic can identify it as a future timeblock without using a date
-      // let blockTimeNum = blockTime.format('H');
       // timeBlockEl.attr('id', 'hour-' + blockTimeNum) // easier way to assign hour number values but impossible to determine if times past midnight are in the future or past due to lack of a date
       // timeBlockEl.text(blockTimeText);
       containerEl.append(timeBlockEl);
