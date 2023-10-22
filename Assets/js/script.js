@@ -1,13 +1,4 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
   const currentDayEl = $('#current-day');
   const saveButtonEl = $('.saveBtn');
   const selectpickerEl = $('.selectpicker');
@@ -87,25 +78,15 @@ $(function () {
   // when user clicks save button on a time block
   containerEl.on('click', '.saveBtn', function() {
     // save the user input
+    // event delegation code from Xpert and altered
     let btnParent = $(this).parent();
     let desc = btnParent.find('.description');
     let descText = desc.val();
-    let descID = btnParent.attr('id') // some code to
-    console.log(descID);
+    let descID = btnParent.attr('id')
     localStorage.setItem(descID, descText);
-    // btnParent = saveButtonEl.parent();
-    // desc = btnParent.$('.description');
-    // descText = desc.val();
-    // console.log(descText);
-    // convert to string
   });
 
   createStartTimePicker();
   createTimeBlocks();
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
 });
