@@ -87,33 +87,7 @@ $(function () {
 
   createStartTimePicker();
   createTimeBlocks();
-
-  //create first div element with id "hour-" + i and class "row time-block" + timeCategory
-  // where if i is in the past, it uses past, if its the present hour it's present, and
-  // if its in the future it uses future.
-  // Then append it to the container
-
   
-  //create another div element with all the default stuff <div class="col-2 col-md-1 hour text-center py-3">x</div>
-  // but the text content is the blockTime
-  // append it to the previous element
-
-  //create textarea element and use the same values each time, append to previous element
-  //create button element and use the same values each time, append to previous element
-  //create i element and use the same values each time, append to previous element
-
-  // so there's 3 variables, one is the hour in the id, the next one is the past/present/future
-  // the last one is the text content
-
-  // Event listener for save button click
-
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-  //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
