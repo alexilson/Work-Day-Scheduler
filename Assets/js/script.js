@@ -82,12 +82,22 @@ $(function () {
   })
 
   // when user clicks save button on a time block
-  saveButtonEl.on('click', function() {
+  containerEl.on('click', '.saveBtn', function() {
+    // save the user input
+    let btnParent = $(this).parent();
+    let desc = btnParent.find('.description');
+    let descText = desc.val();
+    console.log(descText);
+    // btnParent = saveButtonEl.parent();
+    // desc = btnParent.$('.description');
+    // descText = desc.val();
+    // console.log(descText);
+    // convert to string
   });
 
   createStartTimePicker();
   createTimeBlocks();
-  
+
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
