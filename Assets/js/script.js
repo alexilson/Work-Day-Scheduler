@@ -27,7 +27,7 @@ $(function () {
     containerEl.empty(); // Clear out any pre-existing timeblocks
     let startTime = dayjs().hour(selectpickerEl.val()).minute(0);
     for (i = 0; i < 9; ++i) {
-      
+       
       let blockTime = startTime.add(i, 'h');
       let blockTimeText = blockTime.format('hh:mm A');
       console.log(blockTime.format('hh:mm A'));
@@ -49,6 +49,16 @@ $(function () {
       descriptionEl.addClass('col-8 col-md-10 description'); 
       descriptionEl.attr('rows', '3');
       timeBlockEl.append(descriptionEl);
+
+      let buttonEl = $('<button>');
+      buttonEl.addClass('btn saveBtn col-2 col-md-1');
+      buttonEl.attr('aria-label', 'save');
+      timeBlockEl.append(buttonEl);
+
+      let iEl = $('<i>');
+      iEl.addClass('fas fa-save');
+      iEl.attr('aria-hidden', 'true');
+      buttonEl.append(iEl);
     }
   }
 
