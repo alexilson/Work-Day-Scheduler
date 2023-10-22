@@ -22,12 +22,9 @@ $(function () {
     }
     selectpickerEl.val('9'); // Set the default value to "9" (from Xpert)
   }
-  createStartTimePicker();
-
-  // display name of the current day at top of page
-  currentDayEl.text(dayjs().format('dddd'));
 
   const next9Hours = function() {
+    containerEl.empty(); // Clear out any pre-existing timeblocks
     let startTime = dayjs().hour(selectpickerEl.val()).minute(0);
     for (i = 0; i < 9; ++i) {
       
@@ -35,6 +32,7 @@ $(function () {
       console.log(blockTime.format('hh:mm A'));
       
       let timeBlockEl = $('<div>');
+      timeBlock = 
       timeBlockEl.text("Hello World")
       containerEl.append(timeBlockEl)
       // timeBlockEl.attr('id', 'hour-' + blockTime.format('H'))
@@ -49,16 +47,16 @@ $(function () {
     }
   }
 
-  next9Hours();
+  // display name of the current day at top of page
+  currentDayEl.text(dayjs().format('dddd'));
 
+  // event handler for when the user changes their selection in the dropdown
   selectpickerEl.change(function() {
     next9Hours();
   })
 
-  // const createTimeBlock = function() {
-  //   let timeBlockEl = $('<div>');
-  //   timeBlockEl.attr('id', 'hour-' + )
-  // }
+  createStartTimePicker();
+  next9Hours();
 
   //create first div element with id "hour-" + i and class "row time-block" + timeCategory
   // where if i is in the past, it uses past, if its the present hour it's present, and
