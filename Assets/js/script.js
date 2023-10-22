@@ -59,6 +59,9 @@ $(function () {
       let descriptionEl = $('<textarea>');
       descriptionEl.addClass('col-8 col-md-10 description'); 
       descriptionEl.attr('rows', '3');
+      if (localStorage.getItem(timeBlockEl.attr('id'))) {
+        descriptionEl.text(localStorage.getItem(timeBlockEl.attr('id')))
+      }
       timeBlockEl.append(descriptionEl);
 
       let buttonEl = $('<button>');
@@ -87,7 +90,9 @@ $(function () {
     let btnParent = $(this).parent();
     let desc = btnParent.find('.description');
     let descText = desc.val();
-    console.log(descText);
+    let descID = btnParent.attr('id') // some code to
+    console.log(descID);
+    localStorage.setItem(descID, descText);
     // btnParent = saveButtonEl.parent();
     // desc = btnParent.$('.description');
     // descText = desc.val();
