@@ -14,18 +14,22 @@ $(function () {
     selectpickerEl.val('9'); // Set the default value to "9" (from Xpert)
   }
 
+  // create 9 timeblocks starting with the selected start time
   const createTimeBlocks = function() {
     containerEl.empty(); // Clear out any pre-existing timeblocks
-    let startTime = dayjs().hour(selectpickerEl.val()).minute(0);
+    let startTime = dayjs().hour(selectpickerEl.val()).minute(0); // Set the start time to the value of the selection in the dropdown
     for (i = 0; i < 9; ++i) {
-       
-      let blockTime = startTime.add(i, 'h');
-      let blockTimeText = blockTime.format('hh:mm A');
-      let blockTimeNum = parseInt(selectpickerEl.val())+ i;
       
+      // define variables
+      let blockTime = startTime.add(i, 'h');  // add hours to the start time equal to the # time block it's on
+      let blockTimeText = blockTime.format('hh:mm A'); // create dayjs object with the correct time for this timeblock
+      let blockTimeNum = parseInt(selectpickerEl.val()) + i; // set the number for the timeblock
+      
+      // create timeblock element
       let timeBlockEl = $('<div>');
-      timeBlockEl.addClass('row time-block');
+      timeBlockEl.addClass('row time-block');  // add timeblock class
 
+      // assign class based on past/present/future when compared to current hour
       now = dayjs().format('H');
       if (now < blockTimeNum) {
         timeBlockEl.addClass('future');
@@ -37,29 +41,33 @@ $(function () {
         timeBlockEl.addClass('present');
       }
 
-      timeBlockEl.attr('id', 'hour-' + (parseInt(selectpickerEl.val())+ i)) // assigns number to each timeblock up to 31 for 7am to ensure the logic can identify it as a future timeblock without using a date
-      // timeBlockEl.attr('id', 'hour-' + blockTimeNum) // easier way to assign hour number values but impossible to determine if times past midnight are in the future or past due to lack of a date
-      // timeBlockEl.text(blockTimeText);
+       // assigns number to each timeblock up to 31 for 7am to ensure the logic can identify it as a future timeblock without using a date
+      timeBlockEl.attr('id', 'hour-' + (parseInt(selectpickerEl.val())+ i))
       containerEl.append(timeBlockEl);
 
+      // create element for hour text label and assign class and append
       let hourTextEl = $('<div>');
       hourTextEl.addClass('col-2 col-md-1 hour text-center py-3');
       hourTextEl.text(blockTimeText);
       timeBlockEl.append(hourTextEl);
 
+      // create element for text input area, assign class and append
       let descriptionEl = $('<textarea>');
       descriptionEl.addClass('col-8 col-md-10 description'); 
       descriptionEl.attr('rows', '3');
+      // if timeblock has saved text in local storage, populate it
       if (localStorage.getItem(timeBlockEl.attr('id'))) {
         descriptionEl.text(localStorage.getItem(timeBlockEl.attr('id')))
       }
       timeBlockEl.append(descriptionEl);
 
+      // create element for button, assign class and append
       let buttonEl = $('<button>');
       buttonEl.addClass('btn saveBtn col-2 col-md-1');
       buttonEl.attr('aria-label', 'save');
       timeBlockEl.append(buttonEl);
 
+      // create element for button overlay, assign class and append
       let iEl = $('<i>');
       iEl.addClass('fas fa-save');
       iEl.attr('aria-hidden', 'true');
@@ -86,6 +94,7 @@ $(function () {
     localStorage.setItem(descID, descText);
   });
 
+  // run functions to create dropdown and create initial timeblocks based on default value
   createStartTimePicker();
   createTimeBlocks();
 
