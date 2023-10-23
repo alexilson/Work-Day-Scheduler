@@ -86,7 +86,7 @@ $(function () {
   // when user clicks save button on a time block
   containerEl.on('click', '.saveBtn', function() {
     // save the user input
-    // event delegation code from Xpert and altered
+    // event delegation code sourced from Xpert and altered
     let btnParent = $(this).parent();
     let desc = btnParent.find('.description');
     let descText = desc.val();
