@@ -75,8 +75,8 @@ $(function () {
     }
   }
 
-  // display name of the current day at top of page
-  currentDayEl.text(dayjs().format('dddd'));
+  // display name of the current day at top of page along with the month, day, and year.
+  currentDayEl.text(dayjs().format('dddd[,] MMMM D[,] YYYY'));
 
   // event handler for when the user changes their selection in the dropdown
   selectpickerEl.change(function() {

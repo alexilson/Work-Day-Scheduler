@@ -8,6 +8,11 @@ Live site: https://alexilson.github.io/Work-Day-Scheduler/
 
 Repo URL: https://github.com/alexilson/Work-Day-Scheduler
 
+## Description:
+
+Quick and simple site for tracking your work day. Allows you to select the start time of your day so it can be adjusted to any schedule. Helpfully makes the current time block red,
+future time blocks green, and past time blocks grey. You can add descriptions and delete existing descriptons. Start getting organized today!
+
 ## Instructions:
 
 -The calendar will display one time block for each hour.
